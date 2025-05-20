@@ -1,0 +1,247 @@
+<!-- SASS:SASS stands for Syntactically Awesome Stylesheets — it’s a CSS preprocessor, which means it extends CSS with powerful features like:
+
+🔧 Main Features of SASS:
+Variables
+Store values like colors, fonts, sizes:
+
+scss
+Copy
+Edit
+$primary-color: #3498db;
+body {
+  background-color: $primary-color;
+}
+Nesting
+Write CSS in a nested, more readable way (like HTML structure):
+
+scss
+Copy
+Edit
+nav {
+  ul {
+    li {
+      a {
+        color: blue;
+      }
+    }
+  }
+}
+Mixins
+Reuse chunks of CSS with dynamic values:
+
+scss
+Copy
+Edit
+@mixin box-shadow($shadow) {
+  box-shadow: $shadow;
+}
+
+.card {
+  @include box-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+Inheritance / @extend
+Share styles between selectors:
+
+scss
+Copy
+Edit
+.btn {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  @extend .btn;
+  background-color: blue;
+}
+Functions and Operations
+Perform calculations:
+
+scss
+Copy
+Edit
+width: 100% / 3; -->
+
+
+<style type='text/scss'>
+
+
+  .header{
+    text-align: center;
+  }
+  .blog-post, h2 {
+    color: red;
+  }
+</style>
+
+<h1 class="header">Learn Sass</h1>
+<div class="blog-post">
+  <h2>Some random title</h2>
+  <p>This is a paragraph with some random text in it</p>
+</div>
+<div class="blog-post">
+  <h2>Header #2</h2>
+  <p>Here is some more random text.</p>
+</div>
+<div class="blog-post">
+  <h2>Here is another header</h2>
+  <p>Even more random text within a paragraph</p>
+</div>
+
+
+<style type='text/scss'>
+  .blog-post {
+      h1 {
+    text-align: center;
+    color: blue;
+  }
+  p {
+    font-size: 20px;
+  }
+  }
+ 
+</style>
+
+<div class="blog-post">
+  <h1>Blog Title</h1>
+  <p>This is a paragraph</p>
+</div>
+
+
+<!-- Create Reusable CSS with Mixins
+In Sass, a mixin is a group of CSS declarations that can be reused throughout the style sheet. The definition starts with the @mixin at-rule, followed by a custom name. You apply the mixin using the @include at-rule.
+
+@mixin reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul {
+  @include reset-list;
+}
+Compiles to:
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+Your mixins can also take arguments, which allows their behavior to be customized. The arguments are required when using the mixin.
+
+@mixin prose($font-size, $spacing) {
+  font-size: $font-size;
+  margin: 0;
+  margin-block-end: $spacing;
+}
+
+p {
+  @include prose(1.25rem, 1rem);
+}
+
+h2 {
+  @include prose(2.4rem, 1.5rem);
+}
+You can make arguments optional by giving the parameters default values.
+
+@mixin text-color($color: black) {
+  color: $color;
+}
+
+p {
+  @include text-color(); /* color: black */
+}
+
+nav a {
+  @include text-color(orange);
+} -->
+
+<style type='text/scss'>
+
+@mixin shape($w, $h, $bg-color) {
+  width: $w;
+  height: $h;
+  background-color: $bg-color;
+}
+
+#square {
+  @include shape(50px, 50px, red);
+}
+
+#rect-a {
+  @include shape(100px, 50px, blue);
+}
+
+#rect-b {
+  @include shape(50px, 100px, orange);
+}
+
+</style>
+
+
+Use @if and @else to Add Logic To Your Styles
+The @if directive in Sass is useful to test for a specific case - it works just like the if statement in JavaScript.
+
+@mixin make-bold($bool) {
+  @if $bool == true {
+    font-weight: bold;
+  }
+}
+And just like in JavaScript, the @else if and @else directives test for more conditions:
+
+@mixin text-effect($val) {
+  @if $val == danger {
+    color: red;
+  }
+  @else if $val == alert {
+    color: yellow;
+  }
+  @else if $val == success {
+    color: green;
+  }
+  @else {
+    color: black;
+  }
+}
+Create a mixin called border-stroke that takes a parameter $val. The mixin should check for the following conditions using @if, @else if, and @else directives:
+
+light - 1px solid black
+medium - 3px solid black
+heavy - 6px solid black
+If the $val parameter value is not light, medium, or heavy, then the border property should be set to none.
+
+Run the Tests (Ctrl + Enter)
+Reset this lesson
+Get Help
+Tests
+Passed:1. Your code should declare a mixin named border-stroke which has a parameter named $val.
+Passed:2. Your mixin should have an @if statement to check if $val is light, and to set the border to 1px solid black.
+Passed:3. Your mixin should have an @else if statement to check if $val is medium, and to set the border to 3px solid black.
+Passed:4. Your mixin should have an @else if statement to check if $val is heavy, and to set the border to 6px solid black.
+Passed:5. Your mixin should have an @else statement to set the border to none.
+<style type='text/scss'>
+
+@mixin border-stroke($val){
+ @if $val== light{
+  border:1px solid black;
+ }
+ @else if  $val == medium{
+  border:3px solid black;
+ }
+  @else if $val==heavy{
+    border:6px solid black;
+  }
+  @else{
+  border:none;
+  }
+}
+
+  #box {
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    @include border-stroke(medium);
+  }
+</style>
+
+<div id="box"></div>
