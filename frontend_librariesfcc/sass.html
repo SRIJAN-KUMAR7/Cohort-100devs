@@ -291,3 +291,48 @@ It should create 5 classes called .text-1 to .text-5 where each has a font-size 
 <p class="text-3">Hello</p>
 <p class="text-4">Hello</p>
 <p class="text-5">Hello</p>
+
+
+<!-- each map element in sass  -->
+
+@each $color in blue, black, red {
+  .#{$color}-bg {
+    background-color: $color;
+  }
+}
+
+<style type='text/scss'>
+  $x: 1;
+  @while $x < 6 {
+    .text-#{$x} {
+      font-size: 15px * $x;
+    }
+    $x: $x + 1;
+  }
+</style>
+
+<style type='text/scss'>
+  h3{
+    text-align: center;
+  }
+  .info{
+    width: 200px;
+    border: 1px solid black;
+    margin: 0 auto;
+  }
+  .info-important{
+  @extend .info;
+  background-color:magenta;
+  }
+
+
+
+</style>
+<h3>Posts</h3>
+<div class="info-important">
+  <p>This is an important post. It should extend the class ".info" and have its own CSS styles.</p>
+</div>
+
+<div class="info">
+  <p>This is a simple post. It has basic styling and can be extended for other uses.</p>
+</div>
