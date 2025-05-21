@@ -432,5 +432,118 @@ ShoppingCart.defaultProps ={
   items:0
 };
 
+//Override Default Props
+The ability to set default props is a useful feature in React. 
+The way to override the default props is to explicitly set the prop values for a component.
+const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+}
+
+Items.defaultProps = {
+  quantity: 0
+}
+
+class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    { /* Change code below this line */ }
+    return <Items quantity={10} />
+    { /* Change code above this line */ }
+  }
+};
 
 
+<!-- Use PropTypes to Define the Props You Expect -->
+
+ this is done in the same way as the default prop is defined :
+ const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+};
+
+// Change code below this line
+Items.propTypes={quantity:PropTypes.number.isRequired}
+// Change code above this line
+
+Items.defaultProps = {
+  quantity: 0
+};
+
+class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <Items />
+  }
+};
+
+
+<!-- Access Props Using this.props -->
+ <!-- for es6 component definition we use the this keyword  -->
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render() {
+    return (
+        <div>
+            { /* Change code below this line */ }
+            <Welcome name="srijan"/>
+            { /* Change code above this line */ }
+        </div>
+    );
+  }
+};
+
+class Welcome extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render() {
+    return (
+        <div>
+          { /* Change code below this line */ }
+          <p>Hello, <strong>{this.props.name}
+          </strong>!</p>
+          { /* Change code above this line */ }
+        </div>
+    );
+  }
+};
+
+
+<!-- Review Using Props with Stateless Functional Components -->
+const Camper=(props)=>{
+   return(
+     <p>{props.name}</p>
+   )
+}
+Camper.defaultProps={
+  name:"CamperBot"
+}
+Camper.propTypes={
+  name:PropTypes.string.isRequired
+}
+
+
+class CampSite extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <Camper/>
+      </div>
+    );
+  }
+};
+// Change code below this line
+ReactDOM.render(<CampSite />, document.getElementById('root'));
+
+
+//STATES IN REACT JS 
