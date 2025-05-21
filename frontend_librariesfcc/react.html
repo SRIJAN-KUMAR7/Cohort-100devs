@@ -195,3 +195,242 @@ class ParentComponent extends React.Component {
     );
   }
 };
+
+NESTINGG THE COMPONENTS INSIDE EACH OTHER \
+const TypesOfFruit = () => {
+  return (
+    <div>
+      <h2>Fruits:</h2>
+      <ul>
+        <li>Apples</li>
+        <li>Blueberries</li>
+        <li>Strawberries</li>
+        <li>Bananas</li>
+      </ul>
+    </div>
+  );
+};
+
+const Fruits = () => {
+  return (
+    <div>
+      { /* Change code below this line */ }
+     <TypesOfFruit/>
+      { /* Change code above this line */ }
+    </div>
+  );
+};
+
+class TypesOfFood extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Types of Food:</h1>
+        { /* Change code below this line */ }         
+              <Fruits/>      
+        { /* Change code above this line */ }
+      </div>
+    );
+  }
+};
+
+class Fruits extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h2>Fruits:</h2>
+        { /* Change code below this line */ }
+    <NonCitrus/>
+    <Citrus/>
+        { /* Change code above this line */ }
+      </div>
+    );
+  }
+};
+
+class TypesOfFood extends React.Component {
+  constructor(props) {
+     super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>Types of Food:</h1>
+        { /* Change code below this line */ }
+       <Fruits/>
+        { /* Change code above this line */ }
+        <Vegetables />
+      </div>
+    );
+  }
+};
+
+
+Render a Class Component to the DOM
+You may remember using the ReactDOM API in an earlier challenge to render JSX elements to the DOM. The process for rendering React components will look very similar. The past few challenges focused on components and composition, so the rendering was done for you behind the scenes. However, none of the React code you write will render to the DOM without making a call to the ReactDOM API.
+
+Here's a refresher on the syntax: ReactDOM.render(componentToRender, targetNode). The first argument is the React component that you want to render. The second argument is the DOM node that you want to render that component within.
+
+React components are passed into ReactDOM.render() a little differently than JSX elements. For JSX elements, you pass in the name of the element that you want to render. However, for React components, you need to use the same syntax as if you were rendering a nested component, for example ReactDOM.render(<ComponentToRender />, targetNode). You use this syntax for both ES6 class components and functional components.
+
+Both the Fruits and Vegetables components are defined for you behind the scenes. Render both components as children of the TypesOfFood component, then render TypesOfFood to the DOM. There is a div with id='challenge-node' available for you to use.
+
+
+class TypesOfFood extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div id="challenge-node">
+        <h1>TypesOfFood:</h1>
+        {/* Change code below this line */}
+          <Fruits/>
+          <Vegetables/>
+        
+        {/* Change code above this line */}
+      </div>
+    );
+  }
+};
+
+// Change code below this line
+    ReactDOM.render(<TypesOfFood/>,document.getElementById('challenge-node'));
+
+
+BUILDIND MY FIRST  REACT COMPONENT:
+//always make sure you use camel case as js is case sensitive 
+
+// Change code below this line
+class MyComponent extends React.Component{
+  constructor(props){
+    super(props)}
+  render(){
+     return(
+     <div id="challenge-node">
+     <h1>My First React Component!</h1>
+
+
+     </div>
+
+     )
+  }
+};
+ReactDOM.render(<MyComponent/>,document.getElementById('challenge-node'))
+
+//PROPS
+
+Props are like data you send from one component (the parent) to another (the child).
+
+👉 Think of it like this:
+
+You have a parent component called Calendar
+
+You want to give some data (like today’s date) to a child component called CurrentDate
+
+You do that using props
+You are:
+Passing today’s date from Calendar ➡️ to CurrentDate
+Displaying that date inside a <p> tag in CurrentDate
+
+    1. Here's your child component CurrentDate:
+const CurrentDate = (props) => {
+  return (
+    <div>
+      <p>The current date is: {props.date}</p>
+    </div>
+  );
+};
+2. Here's your parent component Calendar:
+You need to pass the date as a prop using date={Date()}:
+
+const Calendar = () => {
+  return (
+    <div>
+      <h3>What date is it?</h3>
+      <CurrentDate date={Date()} />
+    </div>
+  );
+};
+3. Rendering it:
+ReactDOM.render(<Calendar />, document.getElementById('challenge-node'));
+
+
+//final code for passing props 
+const CurrentDate = (props) => {
+  return (
+    <div>
+      { /* Change code below this line */ }
+      <p>The current date is: {props.date}</p>
+      { /* Change code above this line */ }
+    </div>
+  );
+};
+
+class Calendar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>What date is it?</h3>
+        { /* Change code below this line */ }
+        <CurrentDate date={Date()}/>
+        { /* Change code above this line */ }
+      </div>
+    );
+  }
+};
+
+
+//passing arrays as props :
+
+const List = (props) => {
+  { /* Change code below this line */ }
+  return <p>{props.tasks.join(', ')}</p>
+  { /* Change code above this line */ }
+};
+
+class ToDo extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>To Do Lists</h1>
+        <h2>Today</h2>
+        { /* Change code below this line */ }
+      <List tasks={["walk dog","workout"]}/>
+        <h2>Tomorrow</h2>
+        <List tasks={["walk dog","workout","eat","sleep","code","repeat"]}/>
+        { /* Change code above this line */ }
+      </div>
+    );
+  }
+};
+
+
+//setting up default props
+const ShoppingCart = (props) => {
+  return (
+    <div>
+      <h1>Shopping Cart Component {props.items}</h1>
+    </div>
+  )
+};
+// Change code below this line
+ShoppingCart.defaultProps ={
+  items:0
+};
+
+
+
