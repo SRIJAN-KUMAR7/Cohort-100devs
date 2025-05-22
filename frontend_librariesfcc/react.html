@@ -546,4 +546,108 @@ class CampSite extends React.Component {
 ReactDOM.render(<CampSite />, document.getElementById('root'));
 
 
-//STATES IN REACT JS 
+//STATES IN REACT JS FCC -free code camp.org
+Create a Stateful Component
+One of the most important topics in React is state. State consists of any data your application needs to know about, that can change over time. You want your apps to respond to state changes and present an updated UI when necessary. React offers a nice solution for the state management of modern web applications.
+
+You create state in a React component by declaring a state property on the component class in its constructor. This initializes the component with state when it is created. The state property must be set to a JavaScript object. Declaring it looks like this:
+
+this.state = {
+
+}
+You have access to the state object throughout the life of your component. You can update it, render it in your UI, and pass it as props to child components. The state object can be as complex or as simple as you need it to be. Note that you must create a class component by extending React.Component in order to create state like thi
+
+class StatefulComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    // Only change code below this line
+   this.state={
+     firstName:"Srijan"
+   }
+    // Only change code above this line
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.firstName}</h1>
+      </div>
+    );
+  }
+};
+
+<!-- Render State in the User Interface -->
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'freeCodeCamp'
+    }
+  }
+  render() {
+    return (
+      <div>
+        { /* Change code below this line */ }
+          <h1>{this.state.name}</h1>
+        { /* Change code above this line */ }
+      </div>
+    );
+  }
+};
+
+<!-- Render State in the User Interface Another Way
+There is another way to access state in a component. In the render() method, before the return statement, you can write JavaScript directly. For example, you could declare functions, access data from state or props, perform computations on this data, and so on. Then, you can assign any data to variables, which you have access to in the return statement. -->
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'freeCodeCamp'
+    }
+  }
+  render() {
+    // Change code below this line
+     const name=this.state.name;
+    // Change code above this line
+ 
+    return (
+      <div>
+        { /* Change code below this line */ }
+     <h1>{name}</h1>
+        { /* Change code above this line */ }
+      </div>
+    );
+  }
+};
+
+
+<!-- Set State with this.setState
+The previous challenges covered component state and how to initialize state in the constructor. There is also a way to change the component's state. React provides a method for updating component state called setState. You call the setState method within your component class like so: this.setState(), passing in an object with key-value pairs. The keys are your state properties and the values are the updated state data. For instance, if we were storing a username in state and wanted to update it, it would look like this:
+
+this.setState({
+  username: 'Lewis'
+}); -->
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'Initial State'
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    // Change code below this line
+      this.setState({
+        name:"React Rocks!"
+      })
+    // Change code above this line
+  }
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>Click Me</button>
+        <h1>{this.state.name}</h1>
+      </div>
+    );
+  }
+};
+
+
