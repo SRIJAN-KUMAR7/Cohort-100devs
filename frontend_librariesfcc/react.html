@@ -650,4 +650,88 @@ class MyComponent extends React.Component {
   }
 };
 
+<!-- Bind 'this' to a Class Method -->
+ Bind 'this' to a Class Method
+In addition to setting and updating state, you can also define methods for your component class. A class method typically needs to use the this keyword so it can access properties on the class (such as state and props) inside the scope of the method. There are a few ways to allow your class methods to access this.
 
+One common way is to explicitly bind this in the constructor so this becomes bound to the class methods when the component is initialized. You may have noticed the last challenge used this.handleClick = this.handleClick.bind(this) for its handleClick method in the constructor. Then, when you call a function like this.setState() within your class method, this refers to the class and will not be undefined.
+
+Note: The this keyword is one of the most confusing aspects of JavaScript but it plays an important role in React. Although its behavior here is totally normal, these lessons aren't the place for an in-depth review of this so please refer to other lessons if the above is confusing!
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: "Hello"
+    };
+    // Change code below this line
+      this.handleClick=this.handleClick.bind(this)
+    // Change code above this line
+  }
+  handleClick() {
+    this.setState({
+      text: "You clicked!"
+    });
+  }
+  render() {
+    return (
+      <div>
+        { /* Change code below this line */ }
+        <button onClick={this.handleClick}>Click Me!</button>
+        { /* Change code above this line */ }
+        <h1>{this.state.text}</h1>
+      </div>
+    );
+  }
+};
+
+
+<!-- Use State to Toggle an Element
+Sometimes you might need to know the previous state when updating the state. However, state updates may be asynchronous - this means React may batch multiple setState() calls into a single update. This means you can't rely on the previous value of this.state or this.props when calculating the next value. So, you should not use code like this:
+
+this.setState({
+  counter: this.state.counter + this.props.increment
+});
+Instead, you should pass setState a function that allows you to access state and props. Using a function with setState guarantees you are working with the most current values of state and props. This means that the above should be rewritten as:
+
+this.setState((state, props) => ({
+  counter: state.counter + props.increment
+}));
+You can also use a form without props if you need only the state:
+
+this.setState(state => ({
+  counter: state.counter + 1
+})); -->
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visibility: false
+    };
+    // Bind the method
+    this.toggleVisibility = this.toggleVisibility.bind(this);
+  }
+
+  // Define the method and CLOSE it properly
+  toggleVisibility() {
+    this.setState((pstate) => ({ 
+      visibility: !pstate.visibility 
+    }));
+  } // <-- This closing brace was missing
+
+  render() {
+    if (this.state.visibility) {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+          <h1>Now you see me!</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+        </div>
+      );
+    }
+  }
+}
