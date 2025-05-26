@@ -61,3 +61,37 @@ for(let i=0;i<=numbers.length;i++){
     }
 }
 console.log(max);
+
+let array=[1,2,3,4];
+let temp=[...array]
+for(let i=0;i<array.length;i++){
+    array[i]=temp[array.length-i-1];
+}
+console.log(array)
+
+//OBJECTS
+const user1={
+    fname:"srijan kumar",
+    age:22,
+    gender:"male"
+}
+console.log(user1.fname);
+//or
+console.log(user1["gender"])
+console.log(user1["age"])
+ //and array looks like 
+ let books=["mathematics ","physics ","chemisrty"];
+ //NOW LETS LEARN ARRAY OF OBJECTS 
+ const user=[{},{},{}]
+const userAll = [
+  { fname: "srijan kumar", age: 22, gender: "male" },
+  { fname: "sonu", age: 22, gender: "male" },
+  { fname: "sagun", age: 22, gender: "female" }
+];
+
+for (let i = 0; i < userAll.length; i++) { // fixed: i < userAll.length
+  if (userAll[i].gender == "male") {
+    console.log(userAll[i]["fname"]);
+  }
+}
+
