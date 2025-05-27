@@ -89,7 +89,7 @@ const userAll = [
   { fname: "sagun", age: 22, gender: "female" }
 ];
 
-for (let i = 0; i < userAll.length; i++) { // fixed: i < userAll.length
+for (let i = 0; i < userAll.length; i++) { 
   if (userAll[i].gender == "male") {
     console.log(userAll[i]["fname"]);
   }
