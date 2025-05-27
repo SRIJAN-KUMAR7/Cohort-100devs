@@ -85,4 +85,42 @@ console.log(words2);
 // [ 'hi my name is srijan kumar' ]
 
 
-//TRIM
+//TRIM--//removes the starting and ending white spaces
+const vale="  srijan kumar  ";
+console.log(vale.trim())
+const x=vale.toUpperCase();
+console.log(x);
+console.log(x.toLowerCase());
+
+//NUMBER FUNCTIONS
+//parseInt --->Global function
+console.log(parseInt("42"));
+console.log(parseInt("42px"));
+console.log(parseInt("3.14"));
+//42
+// 42
+// 3
+ console.log(parseFloat("3.34nfskf"))
+ //3.34
+
+ //Arrays
+const initial_array=[1,2,3];
+initial_array.push(78);
+console.log(initial_array)
+initial_array.pop();
+console.log(initial_array)
+initial_array.pop();
+console.log(initial_array)
+//to deletefrom front of thearray
+initial_array.shift();
+console.log(initial_array)
+initial_array.unshift("srijan")
+console.log(initial_array)
+//all outputs
+//[ 1, 2, 3, 78 ]
+// [ 1, 2, 3 ]
+// [ 1, 2 ]
+// [ 2 ]
+// [ 'srijan', 2 ]
+// Elapsed time (ms): 1010
+
