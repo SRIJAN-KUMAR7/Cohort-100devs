@@ -5,5 +5,5 @@ let start = Date.now();
 setTimeout(a,1000);
  function a(){
     let end = Date.now();
-    console.log("Elapsed time (ms):", end - start);
+    console.log("Elapsed time (ms):", end-start);
  }
