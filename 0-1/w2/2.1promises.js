@@ -59,7 +59,101 @@ function myownsetTimeout(duration){
 }
 myownsetTimeout(1000)
     .then(function(){
-        console.log("log this after promise")
+        // console.log("log this after promise")
     })
 
 
+function pormisifiedMyOwnSetTimeout(duration){
+    const p=new Promise(function(resolve){
+        setTimeout(function(){
+            resolve();
+        },duration)
+    });
+    return p;
+}
+
+//promise to get rid of =>callback
+const ans=pormisifiedMyOwnSetTimeout(1000);
+ans.then(function(){
+    // console.log("hello world timeout is done")
+})
+
+
+//calling a async function and then putten .then is valid 
+
+//when wwe are going to usse this async  calls 
+//do a network call
+//aleep /wait for some time
+//read a file
+//database call
+
+//5%=>async calls 
+
+
+//consider an example 
+
+/*fs=require('fs');
+fs.readFile("a.txt","utf-8").then(function(err,data){
+
+})
+.catch(function(err){
+
+})*/
+
+// this is a high level example which we will be using 
+
+let n=new Promise(function(resolve){
+    // resolve();--> promise state pending
+    resolve()///promise state undefined 
+    // console.log(n)
+})
+// console.log(n)
+
+// everything related to state of the promise 
+// A Promise in JavaScript is an object representing the eventual completion (or failure) of an asynchronous operation.
+
+// A Promise has three states:
+
+// pending – Initial state, neither fulfilled nor rejected.
+
+// fulfilled – Operation completed successfully.
+
+// rejected – Operation failed.
+
+//  Promise Rejected State
+// When a Promise fails, it enters the rejected state.
+
+//  Example: Manually Rejecting a Promise
+// let promise = new Promise((resolve, reject) => {
+//     reject("Something went wrong!");
+// });
+
+// promise.then((data) => {
+//     console.log("Success:", data);
+// }).catch((error) => {
+//     console.log("Error:", error);  // this runs
+// });
+
+function myasyncfn() {
+    const p = new Promise(function(resolve) {
+        // Simulating async operation (e.g., API call, file read)
+        setTimeout(() => {
+            resolve("hi there i now know async calls in js");
+        }, 1000); // 1 second delay
+    });
+    return p;
+}
+
+// To get rid of callback hell we use async/await
+async function main() {
+    try {
+        const value = await myasyncfn();
+        console.log("Value from myasyncfn:", value);
+    } catch (error) {
+        console.error("Error caught in main:", error);
+    }
+}
+
+main();  // Call the main function
+
+ 
