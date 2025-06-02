@@ -156,4 +156,31 @@ async function main() {
 
 main();  // Call the main function
 
+
+ //a.then(function(){  where a should be a promisified function
+// })
+
+
+function sum(a,b){
+    return new Promise(function(resolve)
+    {
+        resolve(a+b);
+    })
+}
+
+sum(3,4).then(function(ans){//pass arguments normally and whatever tou want todo write inside the anonymous
+//  function just to handle the resolved value of the promise
+    console.log(ans)
+})
  
+//promise chaining 
+
+function firstFunction(){
+    return new Promise(function(resolve){
+        resolve(function(){
+            return Promise(function(resolve){
+                resolve();
+            })
+        })
+    })
+}
