@@ -39,7 +39,53 @@ Java Script--> The implementation
 
 
           Then---> NODE.js was Developed.
+          java script is a  language node.js is a runtime
+          node js is writtern in c or c++
 
 
+BUN---> Node js is slow 
+          it is a competitor to node js and 
+         LANGUAGE used to make bun is  :Zig
+         it is sgnificantly faster 
+         single threaded both 
 */    
 
+
+/*we will be focussing on Nodejs and how to write backend application using node js*/
+
+
+/*What can we do with Node>js
+1.Create CLIs(Command Line interface)-->eg Terminal commands
+2.Create a Video Player
+3.create a game 
+#4 Create a HTTP server
+
+
+Main Thing here is :HTTP server 
+Hyper Text Transfer Protocol 
+
+1. A protocol that is defined for machines to communicate.
+2.Specifically for websites ,it is the most common way for ur frontend to 
+  communicate with its backend.
+
+  OPEN AI is a closed source model ..
+  they will never reveal their ml model
+
+  Frontend-->React,html,css etc
+  Backend -->Node js ,rust ,golang etc
+
+  a place where some rquest goes is backend and response  comes 
+  HTTP lets us communicate to the backend and frontend 
+
+  Objective : To Create  a HTTP server in our machine
+*/
+
+
+
+/* HTTP Servers:Some code that follows HTTP protocol And is able to 
+communicate with clients (browsera /mobile apps...)
+
+think of it similiar to the call app in my phone 
+which lets me communicate with my friends 
+
+ */
