@@ -1,0 +1,3 @@
+hi there i am using the async feature of js 
+and i have done this in vs code just by changing the path of a.txt
+put this a.txt to vs code folder mine is final cohort
