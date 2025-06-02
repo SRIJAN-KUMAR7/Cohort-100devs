@@ -42,3 +42,31 @@ console.log(finalans);
 
 // made the function generic
 
+//async functions 
+/* we have only discussednormal functions and js is single threaded 
+there are some tasks it needs to wait for -- some tasks like 
+1> reading a file 
+2> sending a network request 
+3> a deliberate timeout 
+
+1>reading a file 
+function onDone(content){
+    console.log(content);
+}
+readFile("a.txt",onDone)//async call
+//setTimeout
+console.log("hi there")
+
+usomg SetTimeout 
+function onDone(){
+    console.log("hi there")
+}
+
+setTimeout(onDone,1000)//in ms
+console.log("after setTimeout")
+
+
+*/
+
+
+ 
