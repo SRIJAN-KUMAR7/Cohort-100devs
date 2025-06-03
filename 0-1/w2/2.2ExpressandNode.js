@@ -73,6 +73,7 @@ Hyper Text Transfer Protocol
 
   Frontend-->React,html,css etc
   Backend -->Node js ,rust ,golang etc
+  How do frontend talk to backend --> Wires/Routers etc
 
   a place where some rquest goes is backend and response  comes 
   HTTP lets us communicate to the backend and frontend 
@@ -88,4 +89,61 @@ communicate with clients (browsera /mobile apps...)
 think of it similiar to the call app in my phone 
 which lets me communicate with my friends 
 
+
+In the end the client is throwing some info at the server 
+server doing something with that info 
+server responding back with the final result 
+
+
+Just like a function does 
+function fn(){
+--------
+return value;
+}
+same for server 
+
+the only difference is function is present in our local machine but 
+the server is present in the data centres
+
+ALsO called Remote Procedure calls
  */
+
+
+
+/* Http CLient side :Sending requests
+
+1.Protocol(HTTP/HTPPs)
+2.Address(url/ip/port)of the backend server
+3.Route
+4.Headers,body query parameters
+5.Methods
+
+
+HTTP Server side :Responding 
+1.Response Headers 
+2.Response Body
+3.Status codes
+
+#Refer to image1.png for client ..
+which tells us  about the protocol url and the route
+https://chat.openai.com/backend-api/conversation
+
+https://-->protocol
+chat.openai.com/--->url
+backend-api/conversation---->Route 
+
+Header-->Cookie -. which store some login info of particular user
+Body __> what is 2+2 (Usually in json)
+Methd ---> POST,GET requests 
+
+post-- menaing putting or posting some request ...
+eg ..> asking some question from gpt 
+
+Get--> the history of my converssation with gpt is 
+GET request
+
+
+
+
+
+*/
