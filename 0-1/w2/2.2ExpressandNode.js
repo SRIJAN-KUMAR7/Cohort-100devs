@@ -139,11 +139,58 @@ Methd ---> POST,GET requests
 post-- menaing putting or posting some request ...
 eg ..> asking some question from gpt 
 
-Get--> the history of my converssation with gpt is 
+Get--> the history of my conversation with gpt is 
 GET request
 
 
 
+refer image2.png
+there is something status code -->200,404 etc.
 
 
+How we send the request --> frontend tasks
+we will look into what happens to the browser after the request is already fired
+to backend 
+
+1. browser parses the URL 
+2. Does a DNS Lookup (converts google.com to IP)
+IP-->Internet protocol
+>Similiar to phone number
+In networking, IP refers to the set of rules that govern how data is sent and received over the internet.
+
+It is part of the TCP/IP suite.
+
+Each device connected to a network is assigned an IP address, 
+which is like a unique identifier
+ (e.g., 192.168.1.1 
+
+
+ --->when we send a chat to chatgpt first thing that happens is 
+     DNS resolution ie Domain name service resolution
+    Handshakes ---Computer network core theory
+
+
+3.Establishes a connection to the IP(does the handshakes)
+
+
+
+
+Things that happen in our browser after we fire this request 
+1>you get the input(routes,body,headers)
+2>you do some logic on the input ,calculate the output
+3> return the output body,headers and status code 
+
+
+Common methods when we send request to a backend server 
+1. GET
+2. POST--> adding a convo
+3. PUT--> Updating something like login infos in gpt 
+4. DELETE--> deleting a conversation
+
+Some status code:
+That the backend respond with are :
+1.200--> Everything is OK
+2. 404-->Page/Route not found
+3.403-->Authentication issues
+4.500-->Internal server error
 */
