@@ -194,3 +194,87 @@ That the backend respond with are :
 3.403-->Authentication issues
 4.500-->Internal server error
 */
+
+
+
+
+// /*let a =1;
+// console.log(a);
+
+// fs=require('fs');
+// fs.readFile("a.txt","utf-8",(err,data)=>{
+//     console.log("Data read from the file is");
+//     console.log(data);
+// })
+
+// let ans =0;
+// for(let i=0;i<=100;i++){
+//     ans+=i;
+// }
+// console.log(ans)
+// */
+
+
+// /* there are many liraries that lets us create HTTp servers 
+// The most famous One is EXPRESS
+
+
+// Challenge: Scratch Http server in c/c++ 
+//  */
+
+
+// /*EXPRESS*/
+
+
+// //Objective --> to Create a Http server 
+
+// //this is done to import the library express
+// const express=require("express");
+// // console.log("installed express") npm install express
+
+// //write some code in express
+// const port=3000;
+// const app=express();
+
+// //similiar to fs.readFile("path","utf-8",(err,data)=>{})
+// app.get('/',function(req,res){
+//     ///can do a database call -->async
+
+//     res.send('<b>Hello World!</b>')
+// })
+
+// app.listen(port ,function(){
+//     console.log(`app is running on port ${port}`)
+// })
+// // app.listen(port,function(){
+// //     console.log(`Example app listening on port ${port}`)
+// // })
+
+
+// /* what a chatgpt model  must have written 
+ 
+// app.post('/backend-api/conversation' , function(req,res){
+//    --- run a machine learning model....
+//     res.send('hello World')
+// })
+
+// */
+
+
+// // lets create a todo app that lets user stores todos on the server 
+// // in next file
+
+
+
+// //writing the whole code in one go
+
+// /*
+// const express= require("express");
+// const port=3000;
+// const app=express(); app object 
+// app.get('/',function(req,res){
+//     res.send('Hello World!')
+// })
+
+// app.listen(port,function(){})
+// */
