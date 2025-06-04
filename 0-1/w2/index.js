@@ -1,63 +1,69 @@
-const express = require("express");
-const bodyParser =require("body-parser");
+const express=require('express')
+const app= express();
+const port=process.env.PORT || 3001;
+app.use(express.json());
 
-//middlewares
-const app = express();
-const port = 3001;
+app.post('/',function(req,res){
+     res.send("hi there");
+})
 
-app.use(bodyParser.json());
-
-
-app.post('/new', function(req, res) {
-    console.log(req.headers)
-    console.log(req.body)
-    res.send("hi there");
-});
-//1,2,3....25565
 app.listen(port, function() {
     console.log(`App is running on port ${port}`);
 });
+/*process.env.POST 
+What is this ?
+this is the way to access  the environment variable
+but 
+what is a environment process
+An environment variable is a key-value pair 
+used by the operating system and applications to store configuration setting
 
 
-// see the Postman.png for reference
+If there is process runninng for example a
+golang ,nodejs or java process 
+we can acess the environment variable during the process 
 
-/* how to handle the post request 
-
-more specifically the body of the post request
-
-//post man returns the json msg 
-
-
-{
-    "msg": "2+2=4"
-}
-
-to log all the headers use req.headers
-
-
-and the output i got is here:
-see headerslogged.png from postman
-
-
-req.body gives undefined
-undefined
-
-
-❓ Why req.body is undefined:
-You haven't added a body-parsing middleware (like express.json()).
-GET requests don't usually have a body, and most clients (like browsers or Postman) don't send one with GET.
- 
-
-or we can use the body-parser library 
-so install npm i body-parser
-
-now it is done and reference images are : bodyreqfrompostman.png 
-and the mesageraw.png from postman 
-
-
-//Installed nodemon for the rerun and updation of index.js after being changed 
-
-
-learn about --> fetch   
-
+in node  we can do it in 
+process.env.PORT
 */
+
+
+/* QUery pararmeters in the url to access the message 
+   like const message=req.query.message;
+    we have to change the url like 
+    eg:
+    http://localhost:3000/backend-api/conversation/?message=123&b=1&c=1
+
+
+
+    🔹 GET Request
+Used to: Retrieve data from the server
+
+Data is sent in: The URL (as query parameters)
+
+Example:
+
+url
+https://example.com/search?query=apple
+Visible in browser: ✅ Yes
+
+Use case: Viewing a page, searching, loading content
+
+🔸 POST Request
+Used to: Send data to the server (e.g., form submission)
+
+Data is sent in: The request body (not visible in URL)
+
+Example:
+
+js
+fetch('/login', {
+  method: 'POST',
+  body: JSON.stringify({ username: "srijan", password: "1234" })
+})
+Visible in browser: ❌ No (hidden from URL)
+
+Use case: Logging in, uploading files, submitting forms
+
+ */
+

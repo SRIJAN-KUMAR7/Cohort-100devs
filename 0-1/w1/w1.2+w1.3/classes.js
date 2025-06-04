@@ -77,3 +77,27 @@ catt.speak();//call function on object
 // hi there meow meow
 
 
+
+//best example to understand the classes in detailed way :
+
+
+class Car {
+  constructor(brand, speed) {
+    this.brand = brand;
+    this.speed = speed;
+  }
+
+  drive() {
+    console.log(`${this.brand} is driving at ${this.speed} km/h`);
+  }
+
+  static info() {
+    console.log("Cars are vehicles with 4 wheels.");
+  }
+}
+
+// Create an object (instance)
+const myCar = new Car("Toyota", 120);
+myCar.drive();       // Toyota is driving at 120 km/h
+
+Car.info();          // Cars are vehicles with 4 wheels.
