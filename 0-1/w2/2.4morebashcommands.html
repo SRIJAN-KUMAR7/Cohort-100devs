@@ -12,5 +12,69 @@
          ls -lRa-> Recursively lists the hidden directories 
          ls -lr -> gives the files in reverse order with which it was modified 
          ls -s -> lists directory by sizes
-         ls *.js-. gives all the js files 
+         ls *.js-. gives all the js files * to use the wild card character 
+         ls -lR -> can look the directory at the grassroot level itself 
+         ls ..  -> this lsts the sub directories
+
+
+cd -> change directory 
+    rest hkirat covered in his video
+    touch newfile.tx -> this creates a new file 
+    cat  index.js -> shows the content of the index.js 
+    cat > newfile.txt-> lets to edit the file 
+    cat >> newfile.txt-> lets to append more thing in the same newfile.txt
+    mkdir frontend->lets to make a new folder 
+
+
+    srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ ls
+a.txt  a1.txt  index.js
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ cat index.js
+console.log("hello i am learning bash commands ")srijan_kumar@HpVICTUS:/mnt/c/Ustrs/srija/OneDrive/Desktop/test$ touch newfile.tx
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ ls
+a.txt  a1.txt  index.js  newfile.txt
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ cat > newfile.txt
+Hi i am editing the new file using the terminal
+i am learning very fast
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ cat newfile.txt
+Hi i am editing the new file using the terminal
+i am learning very fast
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ cat >> newfile.txt
+
+
+Adding more data and leaving space so as to understand
+is the computer smart enough to understand this
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ ls
+a.txt  a1.txt  index.js  newfile.txt
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ cat newfile.txt
+Hi i am editing the new file using the terminal
+i am learning very fast
+
+
+Adding more data and leaving space so as to understand
+is the computer smart enough to understand this
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ LS -L
+LS: command not found
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ ls -l
+total 0
+-rwxrwxrwx 1 srijan_kumar srijan_kumar 168 Jun  4 09:53 a.txt
+-rwxrwxrwx 1 srijan_kumar srijan_kumar 168 Jun  4 09:53 a1.txt
+-rwxrwxrwx 1 srijan_kumar srijan_kumar  49 Jun  4 09:29 index.js
+-rwxrwxrwx 1 srijan_kumar srijan_kumar 179 Jun  5  2025 newfile.txt
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ mkdir frontend
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ ls
+a.txt  a1.txt  frontend  index.js  newfile.txt
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test/frontend$ cd ..
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ mkdir -p frontend/scripts
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ mkdir -p frontend/css
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ mkdir -p frontend/img
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$ ls -l frontend/
+total 0
+drwxrwxrwx 1 srijan_kumar srijan_kumar 4096 Jun  5  2025 css
+drwxrwxrwx 1 srijan_kumar srijan_kumar 4096 Jun  5  2025 img
+drwxrwxrwx 1 srijan_kumar srijan_kumar 4096 Jun  5  2025 scripts
+srijan_kumar@HpVICTUS:/mnt/c/Users/srija/OneDrive/Desktop/test$
+
+ will add  i have watched till 18.11 minutes only 
+ 
+
 -->
