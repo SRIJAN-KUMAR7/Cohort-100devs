@@ -89,15 +89,18 @@ app.listen(3000,function(){
 //gives 5050
 
 
-/*CODING BEGINS BABE*/
+/*CODING BEGINS BABE
 
-
-//syntax
 const express= require(express)
 const app = express();
 app.get('/', function(req,res){
-    
+    res.send("hi there")
     
 })
 
 app.listen(3000)
+
+*/
+
+
+//syntax
