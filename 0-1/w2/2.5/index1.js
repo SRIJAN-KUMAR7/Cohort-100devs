@@ -91,30 +91,107 @@ const user={
 
 const users=[user];// one user for now
 
+
+//popular way to send the inputs for get request 
+//query pararmeter
 app.get('/',function(req,res){
         //write the logic here 
         const johnKidneys=users[0].kidneys;
-        const numberOfKidneys=kidneys.length;
-        //filter method 
+        // console.log(johnKidneys)
+        const numberOfKidneys=johnKidneys.length;
+        let numberOfHealthyKidneys=0;
+        //filter method --> we will learn this 
+        for(let i=0;i<johnKidneys.length;i++){
+            if(johnKidneys[i].healthy){
+                numberOfHealthyKidneys=numberOfHealthyKidneys+1;
+            }
+        }
+        const numberOfUnhealthyKidneys=numberOfKidneys-numberOfHealthyKidneys;
+        //isme input that re.query.n 
+
+    res.json({
+        numberOfKidneys,
+        numberOfHealthyKidneys,
+        numberOfUnhealthyKidneys
+    });
+    
         // const numberOfHealthyKidneys=kidneys.filter
 })
 
-
+app.use(express.json());
 app.post('/',function(req,res){
+      //User can add a new unhealthy kidney 
+    // in post req  we send the request or  input in form of  BODY
+    const isHealthy=req.body.isHealthy;
+    // console.log(isHealthy)
+    users[0].kidneys.push({
+        healthy:isHealthy
+    })
 
+    res.json({
+        msg:"Done !"
+    })
+// but i was able to send only get request from here how can i send the post request 
+// can be done through postman and using middleware bodyparser or app.use(epxress.json()); 
 })
 
 app.put('/',function(req,res){
+    //modifying the data
+    //reseting that every kidney present there is healthy
+    for(let i=0;i<users[0].kidneys.length;i++){
+        users[0].kidneys[i].healthy=true;
+    }
 
+    res.json({});
+    // this makes the number of unhealthy kidneys =0
 })
 
 
 app.delete('/',function(req,res){
 
+    // if there are already no unhealthy kidnneys why will we delete 
+    // infact it should use the status code 411--> wrong inputs 
+    if(isThereAtleastOneUnhealthyKidney()){
+    const newKidneys=[];
+    for(let i=0;i<users[0].kidneys.length;i++){
+    if(users[0].kidneys[i].healthy){
+        newKidneys.push(
+            {
+                healthy:true
+            }
+        )
+    }
+
+    
+ users[0].kidneys=newKidneys;
+//  console.log(users[0].kidneys);
+ res.json({
+    msg:"done bro"
+ })
+ }
+    }
+    else{
+        // res.sendStatus(411);
+        res.status(411).json({
+                msg:"You have no bad kidneys"
+        });
+    }
+// to remove all the unhealthy kidneys 
 
 })
 
+ function isThereAtleastOneUnhealthyKidney(){
+    let atleastOneUnhealthyKidney=false;
+ for(let i=0;i<users[0].kidneys.length;i++){
+      if(!users[0].kidneys[i].healthy){
+       atleastOneUnhealthyKidney=true;   
+    }
+ }
+ return atleastOneUnhealthyKidney;
+ }
 
 app.listen(3000,()=>{
 console.log(" app is running on 3000")
 })
+
+// hospital game backend complete 
