@@ -89,7 +89,7 @@ app.get('/health-checkup',function(req,res){
         return;
     } 
 //    console.log( req.headers)..> was not able to change the headers at http://localhost:3000/health-checkup?kidneyId=2
-//will learn about it later --> till now POSTMAN 
+//will learn about it later --> till now POSTMAN is best
 
     // 411 Length Required
 // The server refuses to accept the request because the Content-Length header is missing.
@@ -102,6 +102,13 @@ app.get('/health-checkup',function(req,res){
     res.send("Your kidney is healthy ")
 })
 
-app.listen(3000,()=>{
-    console.log("app running on port 3000")
+app.listen(3001,()=>{
+    console.log("app running on port 3001")
 })
+
+
+//this is the ugly way of doing things as it violates the DRY pronciple 
+// now lets do the same thing using middlewares
+
+//ugly solution -> create a new route ,repeat the code..
+//i will create functions wrappwes is a slight better way\
