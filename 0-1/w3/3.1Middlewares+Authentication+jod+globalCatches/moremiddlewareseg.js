@@ -29,3 +29,4 @@ app.listen(3002, () => {
 //we make use of 
 //const app=express();
 //app.use(express.json());
+// or use the body parser one 
