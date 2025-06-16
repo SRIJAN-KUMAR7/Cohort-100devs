@@ -19,7 +19,7 @@ function calculateRequests(req, res, next) {
 // everywhere as a callback function we can use the 
 // app.use("koi bhi middleware ")
 
-app.use(calculateRequests());
+app.use(calculateRequests);
 app.use(express.json());
 
 
