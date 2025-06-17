@@ -70,7 +70,8 @@ app.listen(3001,()=>{
 //global catches--> another  middleware 
 //4 inputs error based middlewares
 app.use(function(err,req,res,next){
- res.json({
+   console.log(err) 
+    res.json({
     msg:"Sorry something wrong with our server"
  })
 })
