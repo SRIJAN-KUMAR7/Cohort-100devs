@@ -1,44 +1,31 @@
-const express=require("express");
-const app= express();
+const zod = require("zod");
 
-const zod=require("zod");
-app.use(express.json());
+// Function to validate if input is an array of numbers with at least one element
+function validateInput(obj) {
+    const schema = zod.array(zod.number()).nonempty(); // Ensures at least 1 number
+    const response = schema.safeParse(obj);
+    console.log(response);
+}
 
-app.post('/health-checkup',function(req,res){
-    //kidneys=[1,2]
-    const kidneys=req.body.kidneys;
-    //code here input validation--> manual checking of the input validation
-    if(!kidneys){
-        res.json({
-            msg:"wrong inputs"
-        })
-    }
-    else{
-        const kidneyLength=kidneys.length;
+// Example usage
+validateInput(["1", 2, 3]); // Fails due to "1" being a string
+validateInput([1, 2, 3]);   // Passes
 
-    res.send("you have"+kidneyLength +"kidneys")
-    }
-})
+// Function to validate email and password
+function validateInput1(data) {
+    const schema = zod.object({
+        email: zod.string().email(),
+        password: zod.string().min(8)
+    });
 
-app.listen(3001,()=>{
-    console.log("hi ur app is on 3001")
-}) 
+    const result = schema.safeParse(data);
+    console.log(result);
+}
 
-// this is the ugly way to do the input validation
-//we can use the zod library
+// Example usage
+validateInput1({
+    email: "srijankumar77777@gmail.com",
+    password: "123446768"
+});
+//thnku hkirat
 
-//showing all the backend fails to the user is not a good
-//practise so we use global catches
-//because when the backend fails it should not show the whole file system and show the errors 
-//rather it should just say some error... in the backend ..
-
-
-
-//global catches--> another  middleware 
-//4 inputs error based middlewares
-app.use(function(err,req,res,next){
-   console.log(err) 
-    res.json({
-    msg:"Sorry something wrong with our server"
- })
-})
