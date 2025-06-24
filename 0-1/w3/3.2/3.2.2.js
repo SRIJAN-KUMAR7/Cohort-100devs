@@ -28,6 +28,7 @@ const { use } = require("react");
 const jwtPassword = "123456";//this is the required pass /key to verify the signature
 
 const app = express();
+app.use(express.json());
 
 //this is my inmemory database
 const ALL_USERS = [
@@ -87,6 +88,15 @@ app.get("/users", function (req, res) {
     const decoded = jwt.verify(token, jwtPassword);
     const username = decoded.username;
     // return a list of users other than this username
+    res.json(
+     { users: ALL_USERS.filter(function(value){
+      if(value.username===username){
+        return false;
+      } else{
+        return true;
+      } //this gives user other than me
+     })}
+    )
   } catch (err) {
     return res.status(403).json({
       msg: "Invalid token",
@@ -97,3 +107,11 @@ app.get("/users", function (req, res) {
 app.listen(3000,()=>{
   console.log("app on 3000");
 })
+
+
+//the token i got 
+//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNyaWphbmt1bWFyQGdtYWlsLmNvbSIsImlhdCI6MTc1MDc1NDQzN30.MdR1zpiYuXT6BnTIdoLViSXGNwXaLmKMToi698HqbHg
+
+
+//just chnaged the Authorization to authorization
+
