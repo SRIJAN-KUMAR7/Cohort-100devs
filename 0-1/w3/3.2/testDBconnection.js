@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 mongoose.connect(
-  "mongodb+srv://srijankumar77777:Vitamin987@cluster0.u7tsvxx.mongodb.net/userappnew",
+  "some_gibrish",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
