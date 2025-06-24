@@ -110,7 +110,7 @@ app.listen(3000,()=>{
 
 
 //the token i got 
-//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNyaWphbmt1bWFyQGdtYWlsLmNvbSIsImlhdCI6MTc1MDc1NDQzN30.MdR1zpiYuXT6BnTIdoLViSXGNwXaLmKMToi698HqbHg
+//is hidden due to some provacy issues
 
 
 //just chnaged the Authorization to authorization
