@@ -23,12 +23,13 @@ https://gist.github.com/hkirat/1618d30e03dc2c276b1cd4b351028d14
 //the assignment logic
 
 const express = require("express");
-const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");//importing the logic  --fns in use is encoding and verifying
 const { use } = require("react");
-const jwtPassword = "123456";
+const jwtPassword = "123456";//this is the required pass /key to verify the signature
 
 const app = express();
 
+//this is my inmemory database
 const ALL_USERS = [
   {
     username: "harkirat@gmail.com",
@@ -55,7 +56,13 @@ const ALL_USERS = [
 function userExists(username, password) {
   // write logic to return true or false if this user exists
   // in ALL_USERS array
-  
+  let userExists=false;
+ for(let i=0;i<ALL_USERS.length;i++){
+  if((username===ALL_USERS[i].username)&&(password===ALL_USERS[i].password)){
+    userExists=true;
+  }
+ }//done 
+  return userExists;
 }
 
 app.post("/signin", function (req, res) {
@@ -67,8 +74,8 @@ app.post("/signin", function (req, res) {
       msg: "User doesnt exist in our in memory db",
     });
   }
-
-  var token = jwt.sign({ username: username }, "shhhhh");
+//jwt.sign-->verifies the owner of the signature
+  var token = jwt.sign({ username: username }, jwtPassword);
   return res.json({
     token,
   });
@@ -87,4 +94,6 @@ app.get("/users", function (req, res) {
   }
 });
 
-app.listen(3000)
+app.listen(3000,()=>{
+  console.log("app on 3000");
+})
