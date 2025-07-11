@@ -5,7 +5,7 @@
 const express = require("express");
 const app = express();
 
-app.use(express.json());// this means that this middleware is going ot be called everywhere 
+app.use(express.json());// this means that this middleware is going to be called everywhere 
 
 
 
