@@ -1,0 +1,98 @@
+DOM 
+Document object model
+represent the page .IN a way of tree of objects and each object represent some part of page.
+
+What was Java Script--> it was an implementtaion os the ECMA script
+
+setTimeout  was never in the ECMA Script 
+Browser gives some extra functionality
+setTimeout 
+fetch
+setInterval
+
+#document--> this is given by browser
+
+also the Node js added some contribution for the library 
+http 
+fs etc
+
+
+But making them dynamic is hard 
+What do I mean, when I say dynamic -  
+1. Changing the elements on the website once the website is loaded 
+2. Actually calculating the sum based on the inputs and rendering 
+it on the screen
+
+
+classes can be same ..
+get rid of code repetition
+
+
+Ids are supposed to be unique. They are used to uniquely identify a div/span/input/button
+DOM / Document object
+
+it lets to access the elements via the DOM API
+ we can use ids for the css styling 
+ but we use for the java script
+
+
+
+ Now, lets say you don’t have access to the calculation logic on the frontend 
+Lets assume its a hard problem that someone has exposed on a backend server 
+And you need to hit the backend server and get back the value
+Browser code Backend
+Give me sum of 100, 200
+300
+
+
+After Simple interest
+
+Debouncing and Throttling 
+if we use 
+<input oninput="function">
+this sends request to the backend without any button 
+but while typing and changing input we will send numerous requests 
+like we want input filed to be 123 
+on typing 1 then 2 and then 3 will send a total of 3 requesta to backend which we dont want 
+
+
+One way-->copy 123 and paste and then 1 request goes 
+but this will not be done by real  users request
+
+DEBOUNCING:IF THE USER HASNT TYPED FOR 100MS ..SO IT MEANS IT IS A BREAK AND NOW SEND request
+THIS IS DEBOUNCING.
+
+
+Debouncing delays the function call until a certain amount of time has passed since the last event.
+--> CAN USE THE SETTIMEOUT FOR THIS
+🔧 Use Case:
+Typing in a search box → You don’t want to fire an API call on every keystroke, but only after the user has stopped typing.
+
+
+
+
+
+ THROTTLING
+🔹 Definition:
+Throttling ensures the function is called at most once every X milliseconds, no matter how many times the event occurs.
+
+🔧 Use Case:
+Window scrolling → You want to trigger a function (like lazy loading or progress bar updates) at regular intervals, not for every pixel scrolled.
+
+
+gpt code:
+function throttle(func, limit) {
+  let inThrottle = false;
+  return function (...args) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+}
+
+// Usage
+const handleScroll = throttle(() => {
+  console.log("Scroll event fired (every 300ms max)");
+}, 300);

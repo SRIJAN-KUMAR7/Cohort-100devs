@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+  //ASYNC AWAIT SYNTAX
+  async function populateDiv2(){
+    const p=document.getElementById("1").value;//for getting the value 
+    const r=document.getElementById("2").value;
+    const t=document.getElementById("3").value;
+
+    const element=document.getElementById("Finalsum") 
+    
+    const res= await fetch("http://localhost:3000/si?p=" + p + "&r=" + r + "&t=" + t);
+    const ans= await res.text();
+    document.getElementById("Finalsum").innerHTML="Your Simple interest is Rs. "+parseFloat(ans);
+  }
+        
+    
+</script>
+<br>
+   <input id="1" type="text" placeholder="Principal"><br></br>
+   <input  id="2" type="text" placeholder="Rate in %"><br></br>
+   <input  id="3" type="text" placeholder="Time in yrs "><br></br>
+    <button onclick="populateDiv2()">Calculate SI</button>
+    <div id="Finalsum"></div>
+</body>
+</html>

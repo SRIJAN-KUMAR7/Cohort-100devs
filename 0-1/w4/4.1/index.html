@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+//just need to delay the call to populatediv2
+let timeout=null;
+function debouncePopulateDiv(){
+   //delay the call to populatediv untill ive not been called for 100ms 
+   //and i have been  called atleast once
+   //but if during the call this is called again we stop the call using the clearTimeout function and again start the clock...hence DEBOUNCE
+  clearTimeout(timeout);
+  timeout=setTimeout(function(){
+    populateDiv2();
+   },1000) 
+  
+}
+
+
+
+
+    function populateDiv(){
+        //document
+        const a=document.getElementById("1").value;//for getting the value 
+        const b=document.getElementById("2").value;
+        const element=document.getElementById("Finalsum") 
+        console.log(element)
+        //element.innerHTML="Sum is "+(parseInt(a)+parseInt(b));
+        //fetch ;method--> return a object but we nees the response text so
+        //axios --> other method to fetch
+        //const res=fetch("http://localhost:3000/sum?a=" + a + "&b=" + b)
+        //console.log(res);
+        //res.then(function(response){
+            //console.log(response);
+            //response.text(function(ans){
+                //console.log(ans)
+           // })
+        //})
+
+        //PROMISE METHOD
+
+    //fetch("http://localhost:3000/sum?a=" + a + "&b=" + b)
+  //.then(function(response) {
+     // return response.text(); // returns a promise that resolves to the response body as text
+  //})
+  //.then(function(ans) {
+      //console.log(ans); // logs the answer text (e.g., "Sum is 7")
+    //  document.getElementById("Finalsum").innerHTML = ans; // update the page
+  //})
+  //.catch(function(error) {
+    //  console.error("Error:", error);
+  //});
+
+    }
+  //ASYNC AWAIT SYNTAX
+  async function populateDiv2(){
+    const a=document.getElementById("1").value;//for getting the value 
+    const b=document.getElementById("2").value;
+    const element=document.getElementById("Finalsum") 
+    
+    const res= await fetch("http://localhost:3000/sum?a=" + a + "&b=" + b);
+    const ans= await res.text();
+    document.getElementById("Finalsum").innerHTML=ans;
+  }
+        
+    
+</script>
+<body>
+   <input oninput="debouncePopulateDiv()" id="1" type="text" placeholder="First Number"><br></body>
+   <input oninput="debouncePopulateDiv()" id="2" type="text" placeholder="Second Number"><br></br>
+    <!-- <button onclick="populateDiv2()">Calculate Sum</button> -->
+    <div id="Finalsum"></div>
+</body>
+</html>
