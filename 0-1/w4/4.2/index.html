@@ -6,14 +6,56 @@
     <title>Document</title>
 </head>
 <script>
+    let globalId=1;
+
+    function markasDone(todoId){
+       const parent=document.getElementById(todoId);
+       parent.children[2].innerHTML="Done!";
+    }
+   
+    function createChild(title,description,id){
+        const child=document.createElement("div");
+        const first=document.createElement("div");
+        first.innerHTML=title;
+
+        const sec=document.createElement("div");
+        sec.innerHTML=description;
+
+        const third=document.createElement("button");
+        third.innerHTML="Mark as Done";
+        third.setAttribute("onclick",`markasDone(${id})`);
+
+        child.appendChild(first);
+        child.appendChild(sec);
+        child.appendChild(third);
+        child.setAttribute("id",id);
+
+        return child;
+    }
+
+    function addTodo(){
+        const title=document.getElementById("title");
+        const description=document.getElementById("desc");
+        const parent=document.getElementById("container");
+        
+        parent.appendChild(createChild(title.value,description.value,globalId++));
     
+    }
+
+
 </script>
 
 <body>
-    <input type="text" placeholder="Title">
+    <input id="title" type="text" placeholder="Title">
     <br>
-    <input type="text" placeholder="Description">
+    <input id="desc" type="text" placeholder="Description">
     <br>
-    <button>Add Todo</button>
+    <button onclick="addTodo()">Add Todo</button>
+    <div id="container">
+        <!-- <div>title of todo1</div>
+        <div>description of todo1</div>
+        <button>Mark as done </button> -->
+        <!-- we want that our each appended div looks like this -->
+    </div>
 </body>
 </html>
