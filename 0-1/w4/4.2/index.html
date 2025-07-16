@@ -1,61 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Todo App</title>
 </head>
-<script>
-    let globalId=1;
-
-    function markasDone(todoId){
-       const parent=document.getElementById(todoId);
-       parent.children[2].innerHTML="Done!";
-    }
-   
-    function createChild(title,description,id){
-        const child=document.createElement("div");
-        const first=document.createElement("div");
-        first.innerHTML=title;
-
-        const sec=document.createElement("div");
-        sec.innerHTML=description;
-
-        const third=document.createElement("button");
-        third.innerHTML="Mark as Done";
-        third.setAttribute("onclick",`markasDone(${id})`);
-
-        child.appendChild(first);
-        child.appendChild(sec);
-        child.appendChild(third);
-        child.setAttribute("id",id);
-
-        return child;
-    }
-
-    function addTodo(){
-        const title=document.getElementById("title");
-        const description=document.getElementById("desc");
-        const parent=document.getElementById("container");
-        
-        parent.appendChild(createChild(title.value,description.value,globalId++));
-    
-    }
-
-
-</script>
-
 <body>
-    <input id="title" type="text" placeholder="Title">
-    <br>
-    <input id="desc" type="text" placeholder="Description">
-    <br>
-    <button onclick="addTodo()">Add Todo</button>
-    <div id="container">
-        <!-- <div>title of todo1</div>
-        <div>description of todo1</div>
-        <button>Mark as done </button> -->
-        <!-- we want that our each appended div looks like this -->
-    </div>
+  <input id="title" type="text" placeholder="Title"><br>
+  <input id="desc" type="text" placeholder="Description"><br>
+  <!-- <button onclick="addTodo()">Add Todo</button> -->
+  
+  <div id="container"></div>
+
+  <script>
+    let globalId = 1;
+
+    function markasDone(todoId) {
+      const parent = document.getElementById(todoId);
+      parent.children[2].innerHTML = "Done!";
+    }
+
+    function createChild(title, description, id) {
+      const child = document.createElement("div");
+      const first = document.createElement("div");
+      first.innerHTML = title;
+
+      const sec = document.createElement("div");
+      sec.innerHTML = description;
+
+      const third = document.createElement("button");
+      third.innerHTML = "Mark as Done";
+      third.setAttribute("onclick", `markasDone(${id})`);
+
+      child.appendChild(first);
+      child.appendChild(sec);
+      child.appendChild(third);
+      child.setAttribute("id", id);
+
+      return child;
+    }
+
+    function addTodo() {
+      const title = document.getElementById("title");
+      const description = document.getElementById("desc");
+      const parent = document.getElementById("container");
+
+      parent.appendChild(createChild(title.value, description.value, globalId++));
+    }
+
+    function updateDomAccToState(state) {
+      const parent = document.getElementById("container");
+      parent.innerHTML = "";
+
+      for (let i = 0; i < state.length; i++) {
+        const child = createChild(state[i].title, state[i].description, state[i].id);
+        parent.appendChild(child);
+      }
+    }
+
+    // Now we properly call this function outside after definition
+    updateDomAccToState([
+      {
+        title: "go to gym",
+        description: "go to gym from 6pm-7pm",
+        id: 1
+      },
+        {
+        title: "go to gym 2",
+        description: "go to gym from 1pm-4pm",
+        id: 2
+        }
+      
+    ]);
+
+
+     const eventSource = new EventSource('http://localhost:3000/stream');
+
+  eventSource.onmessage = function(event) {
+    const todo = JSON.parse(event.data);
+    console.log("Received:", todo);
+    // You can update the DOM here
+    const container = document.getElementById("container");
+    const child = createChild(todo.title, todo.description, todo.id);
+    container.appendChild(child);
+  };
+  </script>
 </body>
 </html>
