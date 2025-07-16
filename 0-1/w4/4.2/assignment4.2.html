@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Virtual DOM Todo App</title>
+  <script>
+    let globalId = 1; // unique id for todos
+    let todoState = []; // current state
+    let oldTodoState = []; // previous state for diffing
+
+//some corrections still needed as edit and mark as done function not working
+
+
+
+    //  Create a todo DOM element
+    function createTodoElement(todo) {
+      const parent = document.createElement("div");
+      parent.setAttribute("id", todo.id);
+      parent.style.border = "1px solid gray";
+      parent.style.padding = "10px";
+      parent.style.marginBottom = "10px";
+
+      const title = document.createElement("div");
+      title.innerHTML = `<strong>Title:</strong> ${todo.title}`;
+
+      const description = document.createElement("div");
+      description.innerHTML = `<strong>Description:</strong> ${todo.description}`;
+
+      // Toggle Button
+      const doneButton = document.createElement("button");
+      doneButton.innerHTML = todo.completed ? "Done" : "Mark as done";
+      doneButton.onclick = function () {
+        todo.completed = !todo.completed;
+        updateState(todoState);
+      };
+
+      // Edit Button
+      const editButton = document.createElement("button");
+      editButton.innerHTML = "Edit";
+      editButton.style.marginLeft = "10px";
+      editButton.onclick = function () {
+        const newTitle = prompt("Edit title:", todo.title);
+        const newDesc = prompt("Edit description:", todo.description);
+        if (newTitle !== null && newDesc !== null) {
+          todo.title = newTitle.trim();
+          todo.description = newDesc.trim();
+          updateState(todoState);
+        }
+      };
+
+      // Delete Button
+      const deleteButton = document.createElement("button");
+      deleteButton.innerHTML = "Delete";
+      deleteButton.style.marginLeft = "10px";
+      deleteButton.onclick = function () {
+        todoState = todoState.filter(t => t.id !== todo.id);
+        updateState(todoState);
+      };
+
+      // Append elements
+      parent.appendChild(title);
+      parent.appendChild(description);
+      parent.appendChild(doneButton);
+      parent.appendChild(editButton);
+      parent.appendChild(deleteButton);
+
+      return parent;
+    }
+
+    //  Add new todo to DOM
+    function addTodoToDom(todo) {
+      const container = document.getElementById("todos");
+      const todoElement = createTodoElement(todo);
+      container.appendChild(todoElement);
+    }
+
+    // Remove todo from DOM
+    function removeTodoFromDom(todo) {
+      const element = document.getElementById(todo.id);
+      if (element) element.remove();
+    }
+
+    //  Update an existing todo in DOM
+    function updateTodoInDom(oldTodo, newTodo) {
+      const element = document.getElementById(oldTodo.id);
+      if (element) {
+        const newElement = createTodoElement(newTodo);
+        element.replaceWith(newElement);
+      }
+    }
+
+    //  Main updateState function (diff and patch)
+    function updateState(newTodos) {
+      const added = [], deleted = [], updated = [];
+
+      const oldMap = {};
+      for (const todo of oldTodoState) oldMap[todo.id] = todo;
+
+      const newMap = {};
+      for (const todo of newTodos) newMap[todo.id] = todo;
+
+      // Find added or updated
+      for (const todo of newTodos) {
+        if (!oldMap[todo.id]) {
+          added.push(todo);
+        } else if (
+          todo.title !== oldMap[todo.id].title ||
+          todo.description !== oldMap[todo.id].description ||
+          todo.completed !== oldMap[todo.id].completed
+        ) {
+          updated.push({ oldTodo: oldMap[todo.id], newTodo: todo });
+        }
+      }
+
+      // Find deleted
+      for (const todo of oldTodoState) {
+        if (!newMap[todo.id]) {
+          deleted.push(todo);
+        }
+      }
+
+      // Apply changes
+      for (const todo of added) addTodoToDom(todo);
+      for (const todo of deleted) removeTodoFromDom(todo);
+      for (const pair of updated) updateTodoInDom(pair.oldTodo, pair.newTodo);
+
+      // Save current state for next diff
+      oldTodoState = [...newTodos];
+    }
+
+    //  Handle "Add Todo" button
+    function addTodo() {
+      const title = document.getElementById("title").value.trim();
+      const description = document.getElementById("description").value.trim();
+
+      if (title === "" || description === "") return;
+
+      todoState.push({
+        title,
+        description,
+        completed: false,
+        id: globalId++
+      });
+
+      document.getElementById("title").value = "";
+      document.getElementById("description").value = "";
+
+      updateState(todoState);
+    }
+  </script>
+</head>
+
+<body>
+  <h2>Virtual DOM Todo App</h2>
+
+  <input type="text" id="title" placeholder="Todo title" />
+  <br /><br />
+  <input type="text" id="description" placeholder="Todo description" />
+  <br /><br />
+  <button onclick="addTodo()">Add Todo</button>
+
+  <hr />
+  <div id="todos"></div>
+</body>
+</html>

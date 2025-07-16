@@ -33,3 +33,25 @@ function addTodo(){
     //
     //</div>
     }
+
+
+adding todo from updatedomacctostate function resulted in clearing of the dom and
+which makes it ugly 
+..to make the Better solution
+dont clear the dom upfront and update it based on what has changed
+
+
+can be done on changing ids 
+
+Don’t clear the DOM upfront, update it based on what has changed.
+Question is, how does it calculate what all has changed? 
+Has a todo been marked as complete? 
+Has a todo been removed from the backend?
+
+solution:
+By remembering the old todos in a variable (Virtual DOM)
+
+React does this ..never clears the DOM whole 
+it calculates the diff and tells the DOM ..not to clear whole screen and just the
+addition.
+
