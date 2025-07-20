@@ -1,0 +1,122 @@
+MONGODB Deep dive
+
+
+What is a Database
+it is a place where data is stored persistently.
+
+Database is persistent.
+
+
+for linkedin
+1. Users Data
+2. Users Posts
+3. Users Connection relationships
+4. Messages
+'Image 1 .png shows linkedin data base before some auth checks
+
+
+A question ,,why shiuld user go through thid http layer 
+why cant they can hit the database directly
+
+0-1/w4/4.3/img.png
+
+0-1/w4/4.3/image.png
+
+  Generally usually 
+  Database usually allows access to 4 primitives and 
+  they are
+  1.Create Data
+  2.Read Data
+  3.Update Data
+  4.Delete Data
+
+Popularily known as CRUD
+lets see the API for the Mongoose library 
+eventually we will be using prisma-->oRM and Industry standards
+
+In mongoose we have to define some schema
+
+Mongoose is schemaless
+this is counter intuititive that mongoose makes you define schema for 
+things like autocompletions (in vscode) Validating data before it goes to the Database
+
+schemaless Db can be dangerous ,,using schema in mongo makes it slightly less dangerous.
+
+
+Mongoose atlas ka gui me jake schema me changes kr skte hai lekin 
+mongoose library express ke andr change nhi krne deta sql type strict kr de ta hai
+
+Definig a schema in a database
+
+const UserSchema= new mongoose.Schema({
+    email:String,
+    password:String,
+    purchasedCourses:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Course'
+    }]
+});
+
+const CourseSchema= new mongoose.Schema({
+    title:String,
+    Price:32323,
+});
+
+//course selling app tables and schema ---> image3
+
+when we are workin with nosql databases we make usuers table in which
+the schema looks like 
+{
+    username,
+    password,
+    purchasedCourses{
+        reference to some other courses table...
+        which points to so other courses id matching
+    }
+
+}
+
+const UserSchema= new mongoose.Schema({
+    email:String,
+    password:String,
+    purchasedCourses:[{
+        type:mongoose.Schema.Types.ObjectId(-->randomy generated id),
+        ref:'Course'--->this is the reference
+    }]
+});
+
+
+
+const UserSchema= new mongoose.Schema({
+    email:String,
+    password:String,
+    purchasedCourses:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Course'
+    }]
+});
+
+const CourseSchema= new mongoose.Schema({
+    title:String,
+    Price:32323,
+});
+
+
+
+const User=mongoose.model('User',UserSchema);
+const Course=mongoose.model('COURSE',CourseSchema); 
+
+
+create 
+Read
+Update
+Delete 
+
+images for references added
+
+3 jargons for databases
+1.Cluster
+2.databases
+3.Table
+ 
+image named cluster
