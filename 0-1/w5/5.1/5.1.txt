@@ -1,0 +1,146 @@
+5.1 REACT DEEP DIVE 
+
+JSX ,CLASS VS CLASS NAME STATIC VS DYNAMIC STATE COMPONENTS RE-RENDERING 
+
+For STATIC websites we dont need React .
+For DYNAMIC websites,these libraries make it easier to do DOM manipulation
+
+
+React is just an easier way to writ HTML,CSS and JS 
+Its a new syntax ,that under the hood gets converted to HTML/CSS/JS.
+
+React----------------------------->HTML/CSS/JS
+       npm run build 
+chatgpt---->React--->HTML/CSS/JS
+
+Why React?
+People realised it’s harder to do DOM manipulation the conventional way 
+There were libraries that came into the picture that made it slightly easy, but still for a very big app it’s very hard (JQuery) 
+Eventually, VueJS/React created a new syntax to do frontends 
+Under the hood, the react compiler convert your code to HTML/CSS/JS
+
+
+
+Some react jargon
+To create a react app, you usually need to worry about two things
+1.STATE
+2.COMPONENTS
+
+Creators of frontend frameworks realised that all websites can effectively divided intp 2 parts only 
+1. state 
+2. components 
+
+
+State --> Anything that changes in the webpage 
+An object that represents the current state of the app
+It represents the dynamic things in your app (things that change) 
+For example, the value of the counter 
+Pg 14 pdf 
+For the LinkedIn Topbar, it could be something like this--->pg 15 
+
+
+COMPONENTS--->
+How a DOM element should render, given a state 
+It is a re-usable, dynamic, HTML snippet that changes given the state.
+
+and it can take props or state as input 
+example code:
+
+    function buttonComponent(count) {
+      const button = document.createElement("button");
+      button.innerHTML = `Counter ${count}`;
+      button.setAttribute("onclick", `onButtonPress()`);
+      return button;
+    }
+
+Re-RENDERING--->Changes the DOM
+A state change triggers a re-render 
+A re-render represents the actual DOM being manipulated 
+when the state changes
+
+
+What is the Virtual DOM?
+The Virtual DOM (VDOM) is a lightweight in-memory representation of the actual DOM (Document Object Model). 
+It's commonly used in frontend frameworks like React to optimize and efficiently update the user interface.
+
+Why is Virtual DOM used?
+The real DOM is slow when it comes to frequent updates. Updating the real DOM for every small change can 
+cause performance issues. The Virtual DOM improves performance by minimizing direct manipulation of the actual DOM.
+
+
+REACT MAGIC:
+You usually have to define all your components once 
+And then all you have to do is update the state of your app, React takes care of re-rendering your app...
+
+
+react and some state and components understanding
+//state and compponents
+
+import { useState } from "react";
+
+// let state={
+//   count:0
+// }
+//instead of this we should use the hook--->UseState
+//useState hook
+
+
+// function onClickHandler(props){
+//       //alert("HI there you just clicked a wrong button") 
+//       // state.count=state.count+1;
+//       // console.log(state.count)//this is not workin because
+//       //we cant define any global variable and say it as state variable 
+//       //it does not watch any variable and call it as a react state variable
+//       //
+// }
+
+function onClickHandler(){
+  //count=count+1;//this is not a right way to set state variables
+  setcount(count+1);
+}
+function App() {
+  const[count,setcount]=useState(0);//[1,2]
+  console.log(count)
+  console.log(setcount)
+  
+  return (
+    <div>
+     <button onClick={onClickHandler}> Counter {count}</button>
+    </div>
+  )
+}
+
+export default App
+
+
+inorder to convert the react app--> we use 
+npm run build 
+it converts the react app to html,css and javascript in the dist folder 
+
+
+this code shows how we use the components in react
+import React, { useState } from 'react'
+
+const App = () => {
+  const[count,setcount]=useState(0);
+  return (
+    <div>
+      <CustomButton count={count} setcount={setcount}></CustomButton>
+    </div>
+  )
+}
+
+export default App
+
+//this can be used -->Reusable components 
+function CustomButton(props){
+  function btnhandler(){
+    props.setcount(props.count+1);
+  }
+
+  return(
+    <div>
+      <button onClick={btnhandler}>Counter {props.count}</button>
+    </div>
+  )
+}

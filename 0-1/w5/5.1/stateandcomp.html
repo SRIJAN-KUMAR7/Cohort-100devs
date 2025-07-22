@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <div id="buttonParent"></div>
+  <!-- isi ke andar counter ko daalna hai -->
+  <script>
+    let state = {
+      count: 0
+    }//this is state defined
+
+    function onButtonPress() {
+      state.count++;
+      buttonComponentReRender()//this is actually not written by us -->react takes the care for this 
+    }//count updation ho rha hai bs
+
+    function buttonComponentReRender() {
+      document.getElementById("buttonParent").innerHTML = "";
+      const component = buttonComponent(state.count);
+      console.log(component);
+      document.getElementById("buttonParent").appendChild(component);
+    }
+
+    function buttonComponent(count) {
+      const button = document.createElement("button");
+      button.innerHTML = `Counter ${count}`;
+      button.setAttribute("onclick", `onButtonPress()`);
+      return button;
+    }//ye bs div ke andafr button create kr rha hai click pe onButtonPress ko call 
+    //or ek div ke andr button return kr rha hai bs 
+
+    buttonComponentReRender();
+
+  </script>
+</body>
+
+</html>
