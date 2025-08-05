@@ -12,7 +12,7 @@ const App = () => {
   }]);
   return (
     <div>
-      {/* {JSON.stringify(todos)}//this is the ugliest way to render this on the screen  */}
+      {/* {JSON.stringify(todos)}//this is the ugliest/dumbest way to render this on the screen  */}
       {/* <Todo title={todos[0].title} description={todos[0].description}/>
       <Todo title={todos[1].title} description={todos[1].description}/> */}
       {todos.map(function(todo){
@@ -29,6 +29,7 @@ function Todo(props){
     <div>
       <h1>{props.title}</h1>
       <h3>{props.description}</h3>
+    {/* {!completed ? <h1>not done</h1> :<h1>Done </h1>} */}
   
     </div>
   )
